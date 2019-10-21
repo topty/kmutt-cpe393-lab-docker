@@ -5,7 +5,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
 
 RUN apt-get update --fix-missing && \
-    apt-get install -y wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git mercurial subversion build-essential liblapack-dev libblas-dev libffi-dev libzmq3-dev sbcl && \
+    apt-get install -fy wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git mercurial subversion build-essential liblapack-dev libblas-dev libffi-dev libzmq3-dev sbcl && \
     apt-get clean
 
 RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda.sh && \
@@ -20,11 +20,13 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_6
 
 RUN pip install pyquil
 
-RUN git clone --recurse-submodules https://github.com/rigetti/quilc.git
-RUN make quilc
+RUN git clone --recurse-submodules https://github.com/rigetti/quilc.git && \
+    make quilc && \
+    rm -rf /quilc
 
-RUN git clone --recurse-submodules https://github.com/rigetti/qvm.git
-RUN make qvm
+RUN git clone --recurse-submodules https://github.com/rigetti/qvm.git && \
+    make qvm && \
+    rm -rf /qvm
 
 RUN pip install qiskit
 RUN pip install qiskit-terra[visualization]
