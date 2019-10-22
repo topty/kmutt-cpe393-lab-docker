@@ -21,12 +21,10 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_6
 RUN pip install pyquil
 
 RUN git clone --recurse-submodules https://github.com/rigetti/quilc.git && \
-    make quilc && \
-    rm -rf /quilc
+    make quilc
 
 RUN git clone --recurse-submodules https://github.com/rigetti/qvm.git && \
-    make qvm && \
-    rm -rf /qvm
+    make qvm
 
 RUN pip install qiskit
 RUN pip install qiskit-terra[visualization]
