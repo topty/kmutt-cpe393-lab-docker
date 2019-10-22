@@ -1,19 +1,6 @@
 version: '3'
 services:
-  quilc:
-    image: rigetti/quilc
-    ports:
-      - "5555:5555"
-    command: -S
-  qvm:
-    image: rigetti/qvm
-    ports:
-      - "5000:5000"
-    command: -S
   notebook:
     build: .
-    depends_on:
-      - quilc
-      - qvm
     ports:
       - "8888:8888"
