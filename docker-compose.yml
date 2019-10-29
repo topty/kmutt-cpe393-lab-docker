@@ -1,6 +1,6 @@
 version: '3'
 services:
   notebook:
-    build: .
+    image: topty/cpe393qlab 
     ports:
       - "8888:8888"
