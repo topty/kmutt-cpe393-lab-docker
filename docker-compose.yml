@@ -1,6 +1,8 @@
 version: '3'
 services:
   notebook:
-    image: topty/cpe393qlab 
+    image: topty/cpe393qlab
     ports:
-      - "8888:8888"
+      - '8888:8888'
+    volumes:
+      - ./data/:/home
